@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dotnet: build",
+            "program": "${workspaceFolder}/src/Play.Catalog.Service/bin/Debug/net8.0/Play.Catalog.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Play.Catalog.Service",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/Play.Catalog.Service/Views"
+            }
+        },
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:5025",
+            "webRoot": "${workspaceFolder}/src/Play.Catalog.Service",
+        }
+
+    ]
+}
