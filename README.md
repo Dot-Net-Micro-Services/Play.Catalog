@@ -1,3 +1,3 @@
-# Play.Common
+# Play.Catalog
 
-Common Library Used By All Microservices
+Catalog Microservices
