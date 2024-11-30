@@ -11,3 +11,15 @@ dotnet pack src\Play.Catalog.Contracts\ --configuration Release -p:PackageVersio
 
 dotnet nuget push ..\packages\Play.Catalog.Contracts.$version.nupkg --api-key $gh_pat --source "github"
 ```
+
+## Build the docker image
+```powershell
+$env:GH_OWNER="Dot-Net-Micro-Services"
+$env:GHT_PAT="[PAT HERE]"
+docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version
+```
+
+## Run the docker image
+```powershell
+docker run -it --rm -p 5000:5000 --name catalog play.catalog:$version
+```

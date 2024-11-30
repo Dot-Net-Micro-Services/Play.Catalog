@@ -8,16 +8,20 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "dotnet: build",
+            "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/Play.Catalog.Service/bin/Debug/net8.0/Play.Catalog.Service.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Play.Catalog.Service",
             "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceFolder}/src/Play.Catalog.Service/Views"
+                "/Views": "${workspaceFolder}/Views"
             }
         },
         {
@@ -25,8 +29,21 @@
             "request": "launch",
             "type": "chrome",
             "url": "http://localhost:5025",
-            "webRoot": "${workspaceFolder}/src/Play.Catalog.Service",
+            "webRoot": "${workspaceFolder}/src/Play.Catalog.Service"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        {
+            "name": "Docker .NET Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Play.Catalog.Service/Play.Catalog.Service.csproj"
+            }
         }
-
     ]
 }
