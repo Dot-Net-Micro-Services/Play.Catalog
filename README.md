@@ -16,7 +16,8 @@ dotnet nuget push ..\packages\Play.Catalog.Contracts.$version.nupkg --api-key $g
 ```powershell
 $env:GH_OWNER="Dot-Net-Micro-Services"
 $env:GH_PAT="[PAT HERE]"
-docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version
+$acrname="playeconomyacrdev"
+docker build --secret id=GH_OWNER --secret id=GH_PAT -t "$acrname.azurecr.io/play.catalog:$version" .
 ```
 
 ## Run the docker image
@@ -28,4 +29,10 @@ docker run -it --rm -p 5000:5000 --name catalog
 -e ServiceBusSettings__ConnectionString=$serviceBusConnectionString
 -e ServiceSettings__MessageBroker="SERVICEBUS"
 play.catalog:$version
+```
+
+## Publish the docker image
+```powershell
+az acr login --name $acrname
+docker push "$acrname.azurecr.io/play.catalog:$version"
 ```
