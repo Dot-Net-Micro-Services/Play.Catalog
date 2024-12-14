@@ -3,7 +3,7 @@ Catalog Microservices
 
 ## Create and publish package
 ```powershell
-$version="1.0.2"
+$version="1.0.3"
 $owner="Dot-Net-Micro-Services"
 $gh_pat="[PAT HERE]"
 
@@ -15,11 +15,17 @@ dotnet nuget push ..\packages\Play.Catalog.Contracts.$version.nupkg --api-key $g
 ## Build the docker image
 ```powershell
 $env:GH_OWNER="Dot-Net-Micro-Services"
-$env:GHT_PAT="[PAT HERE]"
+$env:GH_PAT="[PAT HERE]"
 docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version
 ```
 
 ## Run the docker image
 ```powershell
-docker run -it --rm -p 5000:5000 --name catalog play.catalog:$version
+$cosmosDbConnectionString="[CONNECTION STRING HERE]"
+$serviceBusConnectionString="[CONNECTION STRING HERE]"
+docker run -it --rm -p 5000:5000 --name catalog 
+-e MongoDbSettings__ConnectionString=$cosmosDbConnectionString
+-e ServiceBusSettings__ConnectionString=$serviceBusConnectionString
+-e ServiceSettings__MessageBroker="SERVICEBUS"
+play.catalog:$version
 ```
