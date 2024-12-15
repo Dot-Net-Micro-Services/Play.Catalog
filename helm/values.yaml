@@ -1,0 +1,13 @@
+microserviceName: "catalog"
+
+image:
+  repository: playeconomyacrdev.azurecr.io/play.catalog
+  tag: 1.0.4
+
+envVariables:
+  ServiceSettings__Authority: "https://playeconomy.southindia.cloudapp.azure.com/identity-svc"
+
+container:
+  port: 5000
+
+identityClientId: fe075af4-7a7b-4687-946f-f5e24e74cc8e
